@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from "prop-types";
+import styles from "./Button.module.css";
+import React from "react";
 
 function App() {
+  return;
+}
+function Button() {
+  const [counter, setCounter] = React.useState();
+  const counting = () => {
+    setCounter(+1);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <button className={styles.btn} text="good" onClick={counting}>
+      Good button
+    </button>
   );
 }
+Button.prototype = {
+  text: PropTypes.string.isRequired,
+};
 
 export default App;
