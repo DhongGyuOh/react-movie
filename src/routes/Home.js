@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import MovieDetail from "../components/MovieDetail";
 
 const url_movie =
   "https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year";
 
-function MovieInfo() {
+function Home() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -26,18 +27,16 @@ function MovieInfo() {
       ) : (
         <div style={{ padding: "20px" }}>
           {movies.map((currentArray) => (
-            <div key={currentArray.id}>
-              <img src={currentArray.medium_cover_image} />
-              <p>{currentArray.title}</p>
-              <span>{currentArray.year} / </span>
-              <span>{currentArray.runtime}minutes / </span>
-              <span>
-                {currentArray.genres.map((g, index) => (
-                  <p key={index}>{g}</p>
-                ))}
-              </span>
-              <p>{currentArray.synopsis}</p>
-            </div>
+            <MovieDetail
+              key={currentArray.id}
+              id={currentArray.id}
+              medium_cover_image={currentArray.medium_cover_image}
+              title={currentArray.title}
+              year={currentArray.year}
+              runtime={currentArray.runtime}
+              genres={currentArray.genres}
+              synopsis={currentArray.synopsis}
+            />
           ))}
         </div>
       )}
@@ -45,4 +44,4 @@ function MovieInfo() {
   );
 }
 
-export default MovieInfo;
+export default Home;
